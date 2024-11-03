@@ -23,31 +23,15 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class BeanConfig {
 
-    private final UserDetailsService userDetailsService;
-
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setPasswordEncoder(passwordEncoder());
-        authProvider.setUserDetailsService(userDetailsService);
-        return authProvider;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
-
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
+        // corsConfiguration.setAllowedOrigins(Arrays.asList(
+        //        "http://localhost:4200",
+        //        "http://192.168.X.X" // Replace with the mobile device's IP address
+        //    ))
         config.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.ORIGIN,
@@ -63,6 +47,7 @@ public class BeanConfig {
                 "PATCH"
         ));
         source.registerCorsConfiguration("/**", config);
+        source.registerCorsConfiguration("http://localhost:4200", config);
         return new CorsFilter(source);
     }
 }

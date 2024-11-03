@@ -1,43 +1,65 @@
 # this yml extend from the application.yml
+#logging:
+#  level:
+#    root: info
+#    org.hibernate.sql: info
+#    com.dtn.book_network: info
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/postgres
+#    username: namduong
+#    password: namduong
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: false # execute a query is will not be display in the ide
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        default_schema: whatsappclone
+#    database: postgresql
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#
+#  mail:
+#    host: localhost
+#    port: 1025
+#    username: nam
+#    password: nam
+#    properties:
+#      mail:
+#        smtp:
+#          trust: "*"
+#        auth: true
+#        starttls:
+#          enabled: true
+#        connectiontimeout: 5000
+#        timeout: 3000
+#        writetimeout: 5000
+#  liquibase:
+#    change-log: classpath:db/changelog/master.xml
+#    default-schema: whatsappclone
+#    contexts: dev
+##    drop-first: true
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://127.0.0.1:9080/realms/whatsapp-clone
+#  devtools:
+#    restart:
+#      enabled: true
+#    livereload:
+#      enabled: true
+logging:
+  level:
+    ROOT: INFO
+    org.hibernate.SQL: DEBUG
+    org.springframework.security: DEBUG
+    com.dtn.book_network: DEBUG
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/book_social_network
-    username: username
-    password: password
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false # execute a query is will not be display in the ide
-    properties:
-      hibernate:
-        format_sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-  mail:
-    host: localhost
-    port: 1025
-    username: nam
-    password: nam
-    properties:
-      mail:
-        smtp:
-          trust: "*"
-        auth: true
-        starttls:
-          enable: true
-        connectiontimeout: 5000
-        timeout: 3000
-        writetimeout: 5000
-  application:
-    security:
-      jwt:
-        secret-key: c5e111226f6bd1c0190562a5699e6fbee02a8108e25abf182c307ebae922f367
-        expiration: 86400000
-        refresh-token:
-          expiration: 604800000
-    mailing:
-      frontend:
-        activation-url: http://localhost:4200/activate-account
-  server:
-    port: 8088
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
